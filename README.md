@@ -25,7 +25,7 @@ new Reflect<MyClass>()
 
 ### Step 2: Invoke methods
 ```
-.set(String fieldName, Object fieldValue) | .set(Map<String, Object> parameterMap)
+.set(String fieldName, Object fieldValue) | .set(Map<String/* fieldName */, Object/* fieldValue */> setterMap)
 .invoke(String methodName, Class<?>[] parameterTypes, Object[] parameterValues)
 ```
 
@@ -39,7 +39,7 @@ new Reflect<MyClass>()
 MyClass myInstance = new Reflect<MyClass>()
                 .clazz(MyClass.class)
                 .construct(Class<?>[] parameterTypes, Object[] parameterValues)
-                .set(String fieldName, Object fieldValue) | .set(Map<String, Object> parameterMap)
+                .set(String fieldName, Object fieldValue)
                 .invoke(String methodName, Class<?>[] parameterTypes, Object[] parameterValues)
                 .reflect();
 ```

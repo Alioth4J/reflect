@@ -89,11 +89,11 @@ public class Reflect<I> {
         return this;
     }
 
-    public Reflect<I> set(Map<String, Object> parameterMap) {
+    public Reflect<I> set(Map<String/* fieldName */, Object/* fieldValue */> setterMap) {
         if (this.instance == null) {
             throw new ReflectException("The instance does not exist.");
         }
-        for (Map.Entry<String, Object> entry : parameterMap.entrySet()) {
+        for (Map.Entry<String, Object> entry : setterMap.entrySet()) {
             String fieldName = entry.getKey();
             Object fieldValue = entry.getValue();
             try {
