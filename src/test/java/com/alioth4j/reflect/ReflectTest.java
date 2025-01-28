@@ -65,7 +65,14 @@ public class ReflectTest {
     }
 
     @Test
-    void testReflectWithParameterizedConstructor() {
+    void testReflectWithClazzAndConstructorParametersConstructor() {
+        TestClass testInstance = new Reflect<TestClass>(TestClass.class, new Class<?>[0], new Object[0]).reflect();
+
+        assertNotNull(testInstance);
+    }
+
+    @Test
+    void testReflectWithExistingObjectConstructor() {
         Integer existingObject = 1;
         Integer testInstance = new Reflect<Integer>(existingObject).reflect();
 

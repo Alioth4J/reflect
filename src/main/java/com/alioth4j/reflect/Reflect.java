@@ -23,6 +23,17 @@ public class Reflect<I> {
     public Reflect() {
     }
 
+    public Reflect(Class<? extends I> clazz, Class<?>[] constructorParameterTypes, Object[] constructorParameterValues) {
+        this.clazz = clazz;
+        try {
+            Constructor<?> constructor = clazz.getDeclaredConstructor(constructorParameterTypes);
+            constructor.setAccessible(true);
+            this.instance = (I) constructor.newInstance(constructorParameterValues);
+        } catch (Exception e) {
+            throw new ReflectException(e);
+        }
+    }
+
     public Reflect(I existingObject) {
         this.clazz = (Class<? extends I>) existingObject.getClass();
         this.instance = existingObject;
