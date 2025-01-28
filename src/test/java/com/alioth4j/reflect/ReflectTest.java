@@ -64,4 +64,12 @@ public class ReflectTest {
         assertEquals("successfully invoke", output);
     }
 
+    @Test
+    void testReflectWithParameterizedConstructor() {
+        Integer existingObject = 1;
+        Integer testInstance = new Reflect<Integer>(existingObject).reflect();
+
+        assertEquals(1, testInstance);
+    }
+
 }

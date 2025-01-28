@@ -23,6 +23,11 @@ public class Reflect<I> {
     public Reflect() {
     }
 
+    public Reflect(I existingObject) {
+        this.clazz = (Class<? extends I>) existingObject.getClass();
+        this.instance = existingObject;
+    }
+
 
     public Reflect<I> clazz(Class<? extends I> clazz) {
         this.clazz = clazz;

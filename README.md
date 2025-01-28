@@ -4,7 +4,7 @@ Use reflection like the Builder pattern.
 
 ## Usage
 ```
-MyClass myInstance = new Reflect<MyClass>()
+MyClass myInstance = new Reflect<MyClass>() | new Reflect<MyClass>(existingObject)
                 .clazz(MyClass.class)
                 .construct(Class<?>[] parameterTypes, Object[] parameterValues)
                 .set(String fieldName, Object fieldValue) | .set(Map<String, Object> parameterMap)
