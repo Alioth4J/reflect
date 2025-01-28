@@ -17,6 +17,11 @@ or
 ```
 new Reflect<MyClass>(existingObject)
 ```
+or
+```
+new Reflect<MyClass>()
+    .exist(existingObject)
+```
 
 ### Step 2: Invoke methods
 ```

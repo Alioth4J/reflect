@@ -62,6 +62,19 @@ public class Reflect<I> {
         return this;
     }
 
+    public Reflect<I> exist(I existingObject) {
+        if (this.clazz != null || this.instance != null) {
+            if (this.instance != null) {
+                throw new ReflectException("The instance already exists");
+            } else {
+                throw new ReflectException("The clazz has already been set.");
+            }
+        }
+        this.clazz = (Class<? extends I>) existingObject.getClass();
+        this.instance = existingObject;
+        return this;
+    }
+
     public Reflect<I> set(String fieldName, Object fieldValue) {
         if (this.instance == null) {
             throw new ReflectException("The instance does not exist.");

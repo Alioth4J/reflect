@@ -79,4 +79,14 @@ public class ReflectTest {
         assertEquals(1, testInstance);
     }
 
+    @Test
+    void testReflectWIthExist() {
+        Integer existingObject = 1;
+        Integer testInstance = new Reflect<Integer>()
+                .exist(existingObject)
+                .reflect();
+
+        assertEquals(1, testInstance);
+    }
+
 }
