@@ -30,11 +30,17 @@ public class Reflect<I> {
 
 
     public Reflect<I> clazz(Class<? extends I> clazz) {
+        if (this.clazz != null) {
+            throw new ReflectException("The clazz has already been set.");
+        }
         this.clazz = clazz;
         return this;
     }
 
     public Reflect<I> construct(Class<?>[] parameterTypes, Object[] parameterValues) {
+        if (this.instance != null) {
+            throw new ReflectException("The instance already exists.");
+        }
         try {
             Constructor<?> constructor = clazz.getDeclaredConstructor(parameterTypes);
             constructor.setAccessible(true);
@@ -46,6 +52,9 @@ public class Reflect<I> {
     }
 
     public Reflect<I> set(String fieldName, Object fieldValue) {
+        if (this.instance == null) {
+            throw new ReflectException("The instance does not exist.");
+        }
         try {
             Field field = clazz.getDeclaredField(fieldName);
             field.setAccessible(true);
@@ -57,6 +66,9 @@ public class Reflect<I> {
     }
 
     public Reflect<I> set(Map<String, Object> parameterMap) {
+        if (this.instance == null) {
+            throw new ReflectException("The instance does not exist.");
+        }
         for (Map.Entry<String, Object> entry : parameterMap.entrySet()) {
             String fieldName = entry.getKey();
             Object fieldValue = entry.getValue();
@@ -72,6 +84,9 @@ public class Reflect<I> {
     }
 
     public Reflect<I> invoke(String methodName, Class<?>[] parameterTypes, Object[] parameterValues) {
+        if (this.instance == null) {
+            throw new ReflectException("The instance does not exist");
+        }
         try {
             Method method = clazz.getDeclaredMethod(methodName, parameterTypes);
             method.setAccessible(true);
